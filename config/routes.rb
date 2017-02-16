@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  # scafollded routes.
+  # resources :messages, except: [:new, :edit]
+  # resources :models, except: [:new, :edit]
+  
+  # Custom endpoints
+  
+  post '/register', to: "users#create", as: "user_register"
+  post '/login', to: "users#login", as: "user_login"
+  get '/chat', to: "messages#chat", as: "message_chat"
+  get '/update', to: "messages#update", as: "message_update"
+  post '/send', to: "messages#create", as: "message_send"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

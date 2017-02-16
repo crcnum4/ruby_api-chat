@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: 1
+  opponent: 1
+  message: MyText
+
+two:
+  origin: 1
+  opponent: 1
+  message: MyText
