@@ -12,7 +12,8 @@ class UsersController < ApplicationController
       if User.find_by_username(params[:user])
         send_error("user exists")
       else
-        @user = User.new(username: params[:user], password: params[:pass])
+        @user = User.new(username: params[:user])
+        @user.password = params[:pass]
         if @user.save
           @json = {:status => "success", :id => "#{@user.id}"}
           render json: @json
@@ -28,7 +29,21 @@ class UsersController < ApplicationController
   # POST /login
   # POST /login.json
   def login
-    
+    if params[:user] && params[:pass]
+      @user = User.find_by_username(params[:user])
+      if @user
+        if @user.password == params[:pass]
+          @json = {:status => "success", :id => @user.id}
+          render json: @json
+        else
+          send_error("invalid password")
+        end
+      else
+       send_error("user not found") 
+      end
+    else
+      send_error("bad parameters")
+    end
   end
 
 end
